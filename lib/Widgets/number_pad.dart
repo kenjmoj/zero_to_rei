@@ -73,7 +73,9 @@ class NumberPad extends StatelessWidget {
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    function('del');
+                  },
                   child: Text(
                     'del',
                     style: kButtonLabel,

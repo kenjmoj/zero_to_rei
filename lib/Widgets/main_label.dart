@@ -34,9 +34,12 @@ class MainLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 15.0, right: 15.0),
-      color: kPrimaryColor,
-      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white12),
+        color: kPrimaryColor,
+      ),
+      padding: EdgeInsets.only(left: 15.0, right: 0.0),
+      width: 350.0,
       alignment: Alignment.bottomRight,
       child: _styledLabel(wordLabel),
     );

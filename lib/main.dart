@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numerictokanji/home.dart';
+import 'package:numerictokanji/Screens/home.dart';
 
 void main() {
   runApp(MyApp());
