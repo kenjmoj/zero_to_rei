@@ -60,30 +60,30 @@ class ConvertNum {
     unit.gai: '垓',
   };
 
-  //18736453
-//千八百七十三万六千四百五十三
   static String _convertedNum = '';
 
-  static void clear() {
+  static String clear() {
     _convertedNum = '';
+    return _convertedNum;
   }
 
-  static String convert(double numToConvert) {
-    int numLength =
-        numToConvert.toString().length - 2; //-2 because receiving a double
-//    print(numLength);
-    unit currentUnit = unit.values[numLength - 1]; //-1 because enum index
+  static String convert(int numToConvert) {
+    int numLength;
+    unit currentUnit;
+
+    ///    int test2 = 999999999999999999;
+    ///    print('test2 $test2');
+    ///    this number of digits fails
+
+    numLength = numToConvert.toString().length;
+    currentUnit = unit.values[numLength - 1]; //-1 because enum index
+
     switch (currentUnit) {
       case unit.ichi:
         {
-          if (_convertedNum == '') {
-            if (numToConvert == 0) {
-              _convertedNum = '零';
-            } else {
-              _convertedNum = _ones[numToConvert];
-            }
-          } else if (numToConvert == 0) {
-            _convertedNum = '';
+          if (_convertedNum == '' && numToConvert == 0) {
+            _convertedNum = '零';
+          } else if (_convertedNum == '零' && numToConvert == 0) {
           } else {
             _convertedNum = _ones[numToConvert];
           }
@@ -94,11 +94,11 @@ class ConvertNum {
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
             _convertedNum = _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
@@ -107,11 +107,11 @@ class ConvertNum {
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
             _convertedNum = _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
@@ -119,67 +119,67 @@ class ConvertNum {
         {
           _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
               _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
+              convert((numToConvert % _zeroFilter(currentUnit)).toInt());
         }
         break;
       case unit.man:
         {
           _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
               _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
+              convert((numToConvert % _zeroFilter(currentUnit)).toInt());
         }
         break;
       case unit.juuman:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.man)).roundToDouble()) +
-                _unitInKanji[unit.man] +
-                convert(numToConvert % _zeroFilter(unit.man));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.man)).toInt()) +
+                    _unitInKanji[unit.man] +
+                    convert((numToConvert % _zeroFilter(unit.man)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.man)) % 10 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '十' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
       case unit.hyakuman:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.man)).roundToDouble()) +
-                _unitInKanji[unit.man] +
-                convert(numToConvert % _zeroFilter(unit.man));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.man)).toInt()) +
+                    _unitInKanji[unit.man] +
+                    convert((numToConvert % _zeroFilter(unit.man)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.man)) % 100 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '百' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
       case unit.senman:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.man)).roundToDouble()) +
-                _unitInKanji[unit.man] +
-                convert(numToConvert % _zeroFilter(unit.man));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.man)).toInt()) +
+                    _unitInKanji[unit.man] +
+                    convert((numToConvert % _zeroFilter(unit.man)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.man)) % 1000 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '千' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
@@ -187,60 +187,60 @@ class ConvertNum {
         {
           _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
               _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
+              convert((numToConvert % _zeroFilter(currentUnit)).toInt());
         }
         break;
       case unit.juuoku:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.oku)).roundToDouble()) +
-                _unitInKanji[unit.oku] +
-                convert(numToConvert % _zeroFilter(unit.oku));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.oku)).toInt()) +
+                    _unitInKanji[unit.oku] +
+                    convert((numToConvert % _zeroFilter(unit.oku)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.oku)) % 10 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '十' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
       case unit.hyakuoku:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.oku)).roundToDouble()) +
-                _unitInKanji[unit.oku] +
-                convert(numToConvert % _zeroFilter(unit.oku));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.oku)).toInt()) +
+                    _unitInKanji[unit.oku] +
+                    convert((numToConvert % _zeroFilter(unit.oku)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.oku)) % 100 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '百' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
       case unit.senoku:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.oku)).roundToDouble()) +
-                _unitInKanji[unit.oku] +
-                convert(numToConvert % _zeroFilter(unit.oku));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.oku)).toInt()) +
+                    _unitInKanji[unit.oku] +
+                    convert((numToConvert % _zeroFilter(unit.oku)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.oku)) % 1000 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '千' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
@@ -248,131 +248,131 @@ class ConvertNum {
         {
           _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
               _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
+              convert((numToConvert % _zeroFilter(currentUnit)).toInt());
         }
         break;
       case unit.juucho:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.cho)).roundToDouble()) +
-                _unitInKanji[unit.cho] +
-                convert(numToConvert % _zeroFilter(unit.cho));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.cho)).toInt()) +
+                    _unitInKanji[unit.cho] +
+                    convert((numToConvert % _zeroFilter(unit.cho)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.cho)) % 10 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '十' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
       case unit.hyakucho:
         {
           if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.cho)).roundToDouble()) +
-                _unitInKanji[unit.cho] +
-                convert(numToConvert % _zeroFilter(unit.cho));
+            _convertedNum =
+                convert((numToConvert ~/ _zeroFilter(unit.cho)).toInt()) +
+                    _unitInKanji[unit.cho] +
+                    convert((numToConvert % _zeroFilter(unit.cho)).toInt());
           } else if ((numToConvert ~/ _zeroFilter(unit.cho)) % 100 == 0) {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           } else {
             _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
                 '百' +
-                convert(numToConvert % _zeroFilter(currentUnit));
+                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
           }
         }
         break;
-      case unit.sencho:
-        {
-          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.cho)).roundToDouble()) +
-                _unitInKanji[unit.cho] +
-                convert(numToConvert % _zeroFilter(unit.cho));
-          } else if ((numToConvert ~/ _zeroFilter(unit.cho)) % 1000 == 0) {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          } else {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                '千' +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          }
-        }
-        break;
-      case unit.kei:
-        {
-          _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-              _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
-        }
-        break;
-      case unit.juukei:
-        {
-          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.kei)).roundToDouble()) +
-                _unitInKanji[unit.kei] +
-                convert(numToConvert % _zeroFilter(unit.kei));
-          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 10 == 0) {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          } else {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                '十' +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          }
-        }
-        break;
-      case unit.hyakukei:
-        {
-          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.kei)).roundToDouble()) +
-                _unitInKanji[unit.kei] +
-                convert(numToConvert % _zeroFilter(unit.kei));
-          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 100 == 0) {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          } else {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                '百' +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          }
-        }
-        break;
-      case unit.senkei:
-        {
-          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
-            _convertedNum = convert(
-                    (numToConvert ~/ _zeroFilter(unit.kei)).roundToDouble()) +
-                _unitInKanji[unit.kei] +
-                convert(numToConvert % _zeroFilter(unit.kei));
-          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 1000 == 0) {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                _unitInKanji[currentUnit] +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          } else {
-            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-                '千' +
-                convert(numToConvert % _zeroFilter(currentUnit));
-          }
-        }
-        break;
-      case unit.gai:
-        {
-          _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
-              _unitInKanji[currentUnit] +
-              convert(numToConvert % _zeroFilter(currentUnit));
-        }
-        break;
+//      case unit.sencho:
+//        {
+//          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
+//            _convertedNum =
+//                convert((numToConvert ~/ _zeroFilter(unit.cho)).toInt()) +
+//                    _unitInKanji[unit.cho] +
+//                    convert((numToConvert % _zeroFilter(unit.cho)).toInt());
+//          } else if ((numToConvert ~/ _zeroFilter(unit.cho)) % 1000 == 0) {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                _unitInKanji[currentUnit] +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          } else {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                '千' +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          }
+//        }
+//        break;
+//      case unit.kei:
+//        {
+//          _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//              _unitInKanji[currentUnit] +
+//              convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//        }
+//        break;
+//      case unit.juukei:
+//        {
+//          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
+//            _convertedNum =
+//                convert((numToConvert ~/ _zeroFilter(unit.kei)).toInt()) +
+//                    _unitInKanji[unit.kei] +
+//                    convert((numToConvert % _zeroFilter(unit.kei)).toInt());
+//          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 10 == 0) {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                _unitInKanji[currentUnit] +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          } else {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                '十' +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          }
+//        }
+//        break;
+//      case unit.hyakukei:
+//        {
+//          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
+//            _convertedNum =
+//                convert((numToConvert ~/ _zeroFilter(unit.kei)).toInt()) +
+//                    _unitInKanji[unit.kei] +
+//                    convert((numToConvert % _zeroFilter(unit.kei)).toInt());
+//          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 100 == 0) {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                _unitInKanji[currentUnit] +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          } else {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                '百' +
+//                convert((numToConvert % _zeroFilter(currentUnit)).toInt());
+//          }
+//        }
+//        break;
+//      case unit.senkei:
+//        {
+//          if (numToConvert ~/ _zeroFilter(currentUnit) == 1) {
+//            _convertedNum = convert(
+//                    (numToConvert ~/ _zeroFilter(unit.kei)).roundToDouble()) +
+//                _unitInKanji[unit.kei] +
+//                convert(numToConvert % _zeroFilter(unit.kei));
+//          } else if ((numToConvert ~/ _zeroFilter(unit.kei)) % 1000 == 0) {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                _unitInKanji[currentUnit] +
+//                convert(numToConvert % _zeroFilter(currentUnit));
+//          } else {
+//            _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//                '千' +
+//                convert(numToConvert % _zeroFilter(currentUnit));
+//          }
+//        }
+//        break;
+//      case unit.gai:
+//        {
+//          _convertedNum = _ones[numToConvert ~/ _zeroFilter(currentUnit)] +
+//              _unitInKanji[currentUnit] +
+//              convert(numToConvert % _zeroFilter(currentUnit));
+//        }
+//        break;
       default:
         {
           _convertedNum = 'not supported';

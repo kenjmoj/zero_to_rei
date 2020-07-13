@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neumorphic/neumorphic.dart';
-import 'package:numerictokanji/style_constants.dart';
 
 class NumberPad extends StatelessWidget {
   NumberPad({this.function});
@@ -10,7 +9,6 @@ class NumberPad extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(15),
       width: 350.0,
-//              color: Color(0xFF63707e),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -22,7 +20,7 @@ class NumberPad extends StatelessWidget {
                 child: NeuButton(
                   padding: EdgeInsets.all(12.0),
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -30,7 +28,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '1',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -38,7 +36,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -46,7 +44,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '2',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -54,7 +52,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -62,7 +60,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '3',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -70,7 +68,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -78,7 +76,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     'del',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -91,7 +89,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -99,7 +97,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '4',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -107,7 +105,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -115,7 +113,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '5',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -123,7 +121,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -131,7 +129,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '6',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -139,7 +137,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -147,7 +145,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     'AC',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -160,7 +158,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -168,7 +166,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '7',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -176,7 +174,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -184,7 +182,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '8',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -192,7 +190,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -200,7 +198,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '9',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),
@@ -208,7 +206,7 @@ class NumberPad extends StatelessWidget {
                 width: 60.0,
                 child: NeuButton(
                   decoration: NeumorphicDecoration(
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   onPressed: () {
@@ -216,7 +214,7 @@ class NumberPad extends StatelessWidget {
                   },
                   child: Text(
                     '0',
-                    style: kButtonLabel,
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:span_builder/span_builder.dart';
-import 'package:numerictokanji/style_constants.dart';
 
 class MainLabel extends StatelessWidget {
   MainLabel({@required this.wordLabel});
@@ -17,15 +16,16 @@ class MainLabel extends StatelessWidget {
         .build();
   }
 
-  RichText _styledLabel(String stringToStyle) {
-    print(stringToStyle.length);
+  RichText _styledLabel(String stringToStyle, BuildContext context) {
+//    print(stringToStyle.length);
     return RichText(
       text: TextSpan(
         style: TextStyle(
-            fontFamily: 'Noto Serif JP',
-            fontSize: stringToStyle.length > 24 ? 32 : 36,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFFf2f6f5)),
+          fontFamily: 'Noto Serif JP',
+          fontSize: stringToStyle.length > 24 ? 36 : 38,
+          fontWeight: FontWeight.w600,
+          color: Theme.of(context).secondaryHeaderColor,
+        ),
         children: _styleText(stringToStyle),
       ),
     );
@@ -35,13 +35,13 @@ class MainLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white12),
-        color: kPrimaryColor,
+        border: Border.all(color: Theme.of(context).accentColor),
+        color: Theme.of(context).primaryColor,
       ),
       padding: EdgeInsets.only(left: 15.0, right: 0.0),
       width: 350.0,
       alignment: Alignment.bottomRight,
-      child: _styledLabel(wordLabel),
+      child: _styledLabel(wordLabel, context),
     );
   }
 }

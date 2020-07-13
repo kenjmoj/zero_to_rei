@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:numerictokanji/style_constants.dart';
 
 class SubLabel extends StatelessWidget {
   SubLabel({@required this.numLabel});
@@ -14,18 +13,15 @@ class SubLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white12),
-        color: kPrimaryColor,
+        border: Border.all(color: Theme.of(context).accentColor),
+        color: Theme.of(context).primaryColor,
       ),
       padding: EdgeInsets.only(left: 15.0, right: 15.0),
       width: 350.0,
       alignment: Alignment.centerRight,
       child: Text(
         _formatNum(),
-        style: TextStyle(
-          fontSize: 20.0,
-          color: kTertiaryColor,
-        ),
+        style: Theme.of(context).textTheme.bodyText1,
       ),
     );
   }

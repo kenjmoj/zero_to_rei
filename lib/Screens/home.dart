@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:numerictokanji/Model/convert_num.dart';
 import 'package:numerictokanji/Widgets/number_pad.dart';
-import 'package:numerictokanji/style_constants.dart';
 import 'package:numerictokanji/Widgets/main_label.dart';
 import 'package:numerictokanji/Widgets/sub_label.dart';
+import 'package:neumorphic/neumorphic.dart';
+import 'package:numerictokanji/Widgets/about_this_app.dart';
 
 class Home extends StatefulWidget {
+  Home(this.toggleTheme);
+
+  final Function toggleTheme;
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -13,13 +18,14 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   String numLabel = '';
   String wordLabel = '';
+  int switchValue = 1;
 
   void butPressed(String pressed) {
     switch (pressed) {
       case 'AC':
         setState(() {
           numLabel = '';
-          wordLabel = '';
+          wordLabel = ConvertNum.clear();
         });
         break;
       case 'del':
@@ -32,20 +38,26 @@ class _HomeState extends State<Home> {
             });
           } else {
             numLabel = numLabel.substring(0, numLabel.length - 1);
-            wordLabel = ConvertNum.convert(double.parse(numLabel));
+
+            wordLabel = ConvertNum.convert(int.parse(numLabel));
           }
         });
         break;
 
       default:
-        setState(() {
-          if (numLabel == '0') {
-            numLabel = '$pressed';
-          } else {
-            numLabel = '$numLabel$pressed';
-          }
-          wordLabel = ConvertNum.convert(double.parse(numLabel));
-        });
+        if (numLabel.length == 15) {
+//          print('not supported');
+        } else {
+          setState(() {
+            if (numLabel == '0') {
+              numLabel = '$pressed';
+            } else {
+              numLabel = '$numLabel$pressed';
+            }
+
+            wordLabel = ConvertNum.convert(int.parse(numLabel));
+          });
+        }
         break;
     }
   }
@@ -53,8 +65,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(),
-      backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(14.0),
@@ -76,13 +86,72 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 0.0,
               ),
               Expanded(
                 flex: 6,
                 child: NumberPad(
                   function: butPressed,
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    flex: 9,
+                    child: Container(
+                      padding: EdgeInsets.only(left: 120.0, right: 80.0),
+                      width: 10.0,
+                      child: NeuSwitch<int>(
+                        thumbColor: Theme.of(context).buttonColor,
+                        backgroundColor: Theme.of(context).primaryColor,
+                        groupValue: switchValue,
+                        children: {
+                          0: Text('Light',
+                              style: Theme.of(context).textTheme.bodyText2),
+                          1: Text('Dark',
+                              style: Theme.of(context).textTheme.bodyText2),
+                        },
+                        onValueChanged: (val) {
+                          setState(
+                            () {
+                              if (switchValue != val) {
+                                switchValue = val;
+                                widget.toggleTheme();
+                              }
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: IconButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AboutThisApp(
+                              appName: 'ZeroRei',
+                              appSubName: 'ゼロ零:漢数字変換ツール',
+                              version: '1.0 (1)',
+                              privacyUrl:
+                                  'https://shonanappfactory.co/eqlist-privacypolicy/',
+                              appLandingUrl:
+                                  'https://shonanappfactory.co/eqlist-japanearthquakeinfo/',
+                              backgroundColor: Color(0xFF4A514E),
+                            );
+                          },
+                        );
+                      },
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
