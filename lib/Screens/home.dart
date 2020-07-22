@@ -20,6 +20,10 @@ class _HomeState extends State<Home> {
   String wordLabel = '';
   int switchValue = 1;
 
+  String appName = 'ZeroRei';
+  String appSubName = 'ゼロ零:漢数字変換ツール';
+  String version = '1.0.0 (5)';
+
   void butPressed(String pressed) {
     switch (pressed) {
       case 'AC':
@@ -133,13 +137,13 @@ class _HomeState extends State<Home> {
                           context: context,
                           builder: (BuildContext context) {
                             return AboutThisApp(
-                              appName: 'ZeroRei',
-                              appSubName: 'ゼロ零:漢数字変換ツール',
-                              version: '1.0 (1)',
+                              appName: appName,
+                              appSubName: appSubName,
+                              version: version,
                               privacyUrl:
-                                  'https://shonanappfactory.co/eqlist-privacypolicy/',
+                                  'https://shonanappfactory.co/zerorei-privacypolicy/',
                               appLandingUrl:
-                                  'https://shonanappfactory.co/eqlist-japanearthquakeinfo/',
+                                  'https://shonanappfactory.co/zerorei-kansujiconverter/',
                               backgroundColor: Color(0xFF4A514E),
                             );
                           },
